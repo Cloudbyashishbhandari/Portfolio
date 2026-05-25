@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ashish Bhandari | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amazon+Ember:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --amz-dark:   #131921;
+      --amz-mid:    #232f3e;
+      --amz-accent: #37475a;
+      --amz-yellow: #ffd814;
+      --amz-yhov:   #f7ca00;
+      --amz-orange: #ff9900;
+      --amz-ohov:   #e68a00;
+      --amz-link:   #007185;
+      --amz-lhov:   #c7511f;
+      --amz-bg:     #eaeded;
+      --amz-white:  #ffffff;
+      --amz-border: #dddddd;
+      --amz-text:   #0f1111;
+      --amz-muted:  #565959;
+      --amz-star:   #ff9900;
+      --amz-prime:  #00a8e1;
+      --amz-green:  #007600;
+      --amz-red:    #b12704;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Arial, sans-serif; background: var(--amz-bg); color: var(--amz-text); font-size: 14px; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; }
+
+    /* ═══ TOP UTILITY BAR ═══ */
+    .util-bar {
+      background: var(--amz-dark);
+      color: #ddd;
+      font-size: 12px;
+      padding: 3px 18px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 18px;
+    }
+    .util-bar a { color: #ddd; }
+    .util-bar a:hover { color: white; text-decoration: underline; }
+    .util-avail {
+      display: inline-flex; align-items: center; gap: 5px;
+      color: #67e8b0; font-weight: bold;
+    }
+    .util-avail .adot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #67e8b0;
+      animation: blink 1.8s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    /* ═══ NAVBAR ═══ */
+    .navbar {
+      background: var(--amz-dark);
+      display: flex;
+      align-items: center;
+      padding: 8px 14px;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 300;
+      box-shadow: 0 2px 8px rgba(0,0,0,.5);
+    }
+    .navbar:hover { background: #1e2a38; }
+
+    /* Logo */
+    .nav-logo {
+      display: flex; flex-direction: column; align-items: flex-start;
+      border: 1px solid transparent; padding: 5px 8px; border-radius: 3px; cursor: pointer;
+      transition: border-color .15s; color: white;
+    }
+    .nav-logo:hover { border-color: white; }
+    .nav-logo-name { font-size: 21px; font-weight: bold; letter-spacing: -.5px; line-height: 1; }
+    .nav-logo-name span { color: var(--amz-orange); }
+    .nav-logo-sub { font-size: 9px; color: var(--amz-orange); font-weight: bold; letter-spacing: .3px; }
+
+    /* Location */
+    .nav-loc {
+      display: flex; flex-direction: column; color: white; font-size: 11.5px;
+      border: 1px solid transparent; padding: 5px 8px; border-radius: 3px; cursor: pointer;
+      transition: border-color .15s; white-space: nowrap;
+    }
+    .nav-loc:hover { border-color: white; }
+    .nav-loc .l1 { color: #ccc; font-size: 10.5px; }
+    .nav-loc .l2 { font-weight: bold; font-size: 12.5px; }
+
+    /* Search */
+    .nav-search {
+      flex: 1; display: flex; border-radius: 4px; overflow: hidden; height: 40px;
+      border: 2px solid transparent; transition: border-color .15s;
+    }
+    .nav-search:focus-within { border-color: var(--amz-orange); }
+    .nav-search-cat {
+      background: #f3f3f3; border: none; border-right: 1px solid #cdba96;
+      padding: 0 10px; font-size: 12px; color: #555; cursor: pointer; min-width: 60px; outline: none;
+    }
+    .nav-search-input {
+      flex: 1; border: none; padding: 0 12px; font-size: 14px;
+      background: white; outline: none; color: var(--amz-text);
+    }
+    .nav-search-btn {
+      background: var(--amz-orange); border: none; padding: 0 14px; cursor: pointer;
+      transition: background .15s; display: flex; align-items: center; justify-content: center;
+    }
+    .nav-search-btn:hover { background: var(--amz-ohov); }
+    .nav-search-btn svg { fill: var(--amz-dark); }
+
+    /* Nav links */
+    .nav-links { display: flex; gap: 4px; }
+    .nav-link {
+      display: flex; flex-direction: column; color: white; font-size: 12px;
+      border: 1px solid transparent; padding: 5px 8px; border-radius: 3px;
+      cursor: pointer; transition: border-color .15s; white-space: nowrap; text-decoration: none;
+    }
+    .nav-link:hover { border-color: white; }
+    .nav-link .nl1 { font-size: 10.5px; color: #ccc; }
+    .nav-link .nl2 { font-weight: bold; font-size: 13px; }
+    .nav-cart { flex-direction: row; align-items: center; gap: 4px; }
+    .cart-num { color: var(--amz-orange); font-weight: bold; font-size: 20px; line-height: 1; }
+
+    /* ═══ SUB-NAV ═══ */
+    .sub-nav {
+      background: var(--amz-accent);
+      display: flex; align-items: center;
+      padding: 0 14px; overflow-x: auto; scrollbar-width: none;
+    }
+    .sub-nav::-webkit-scrollbar { display: none; }
+    .sub-nav-item {
+      color: white; font-size: 13px; padding: 8px 12px; white-space: nowrap;
+      cursor: pointer; border: 1px solid transparent; border-radius: 3px;
+      transition: border-color .15s;
+    }
+    .sub-nav-item:hover { border-color: white; }
+    .sub-nav-item.bold { font-weight: bold; }
+    .sub-nav-item.fire { color: var(--amz-yellow); font-weight: bold; }
+
+    /* ═══ HERO CAROUSEL ═══ */
+    .hero-wrap { position: relative; overflow: hidden; }
+    .hero {
+      background: linear-gradient(135deg, var(--amz-dark) 0%, #1a2537 45%, #0c1622 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Subtle dot grid */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+    /* Orange glow circles */
+    .hero-glow {
+      position: absolute; border-radius: 50%; pointer-events: none;
+    }
+    .hero-glow-1 { width: 420px; height: 420px; top: -120px; right: -100px; background: radial-gradient(circle, rgba(255,153,0,.13), transparent 70%); }
+    .hero-glow-2 { width: 280px; height: 280px; bottom: -60px; left: 30%; background: radial-gradient(circle, rgba(0,168,225,.08), transparent 70%); }
+
+    .hero-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 64px 40px 60px;
+      display: flex; align-items: center; gap: 48px;
+      position: relative;
+    }
+    .hero-text { flex: 1; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,168,225,.18); border: 1px solid rgba(0,168,225,.35);
+      color: var(--amz-prime); font-size: 11px; font-weight: bold;
+      padding: 4px 12px; border-radius: 20px; margin-bottom: 18px;
+      letter-spacing: .6px; text-transform: uppercase;
+    }
+    .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--amz-prime); animation: blink 1.8s infinite; }
+
+    .hero h1 { font-size: 52px; font-weight: bold; line-height: 1.07; margin-bottom: 10px; letter-spacing: -.5px; }
+    .hero h1 .hl { color: var(--amz-orange); }
+    .hero-role { font-size: 20px; color: #ccc; margin-bottom: 8px; }
+    .hero-tag { font-size: 14px; color: #aaa; line-height: 1.65; margin-bottom: 30px; max-width: 480px; }
+
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+    .btn-yellow {
+      background: var(--amz-yellow); color: var(--amz-text);
+      border: none; padding: 10px 24px; border-radius: 24px; font-size: 14px; font-weight: bold;
+      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 7px;
+      transition: background .15s, box-shadow .15s, transform .1s;
+      box-shadow: 0 2px 5px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.4);
+    }
+    .btn-yellow:hover { background: var(--amz-yhov); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(255,216,20,.35); }
+    .btn-orange {
+      background: var(--amz-orange); color: white;
+      border: none; padding: 10px 24px; border-radius: 24px; font-size: 14px; font-weight: bold;
+      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 7px;
+      transition: background .15s, transform .1s;
+      box-shadow: 0 2px 5px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.2);
+    }
+    .btn-orange:hover { background: var(--amz-ohov); transform: translateY(-1px); }
+
+    .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+    .hstat { border-right: 1px solid rgba(255,255,255,.15); padding-right: 32px; }
+    .hstat:last-child { border: none; padding: 0; }
+    .hstat-num { font-size: 30px; font-weight: bold; color: var(--amz-yellow); line-height: 1; }
+    .hstat-label { font-size: 11px; color: #aaa; margin-top: 2px; text-transform: uppercase; letter-spacing: .4px; }
+
+    /* Hero card (right) */
+    .hero-card {
+      background: white; color: var(--amz-text);
+      border-radius: 8px; padding: 22px; width: 268px; flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,.45);
+      position: relative; overflow: hidden;
+    }
+    .hero-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--amz-yellow), var(--amz-orange));
+    }
+    .hc-avatar {
+      width: 58px; height: 58px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--amz-orange), var(--amz-yellow));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: bold; color: white; margin-bottom: 12px;
+      box-shadow: 0 3px 10px rgba(255,153,0,.35);
+    }
+    .hc-name { font-size: 17px; font-weight: bold; margin-bottom: 2px; }
+    .hc-role { font-size: 12px; color: var(--amz-muted); margin-bottom: 10px; }
+    .hc-stars { color: var(--amz-star); font-size: 14px; }
+    .hc-reviews { font-size: 11px; color: var(--amz-link); margin-bottom: 12px; }
+    .hc-price { font-size: 28px; font-weight: bold; margin: 8px 0 4px; }
+    .hc-price span { font-size: 13px; font-weight: normal; color: var(--amz-muted); }
+    .hc-avail { color: var(--amz-green); font-size: 13px; font-weight: bold; margin-bottom: 14px; }
+    .hc-btn-y {
+      width: 100%; background: var(--amz-yellow); border: 1px solid #a88734;
+      padding: 9px; border-radius: 24px; font-weight: bold; font-size: 13px;
+      cursor: pointer; margin-bottom: 8px; transition: background .15s;
+      box-shadow: 0 2px 5px rgba(0,0,0,.1), inset 0 1px 0 rgba(255,255,255,.5);
+    }
+    .hc-btn-y:hover { background: var(--amz-yhov); }
+    .hc-btn-o {
+      width: 100%; background: var(--amz-orange); border: 1px solid #c45500;
+      padding: 9px; border-radius: 24px; font-weight: bold; font-size: 13px;
+      color: white; cursor: pointer; transition: background .15s;
+      box-shadow: 0 2px 5px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.15);
+    }
+    .hc-btn-o:hover { background: var(--amz-ohov); }
+    .hc-note { font-size: 10.5px; color: var(--amz-muted); margin-top: 10px; text-align: center; }
+
+    /* ═══ DEAL STRIP ═══ */
+    .deal-strip {
+      background: white; border-bottom: 3px solid var(--amz-orange);
+      padding: 9px 20px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+      font-size: 13px;
+    }
+    .deal-lbl {
+      background: var(--amz-red); color: white; padding: 3px 9px;
+      border-radius: 3px; font-weight: bold; font-size: 11.5px; letter-spacing: .3px;
+    }
+    .deal-strip span { color: var(--amz-muted); }
+    .deal-strip a { color: var(--amz-link); font-weight: bold; }
+    .deal-strip a:hover { color: var(--amz-lhov); text-decoration: underline; }
+
+    /* ═══ SEARCH RESULTS BAR ═══ */
+    .results-bar {
+      background: white; border-bottom: 1px solid var(--amz-border);
+      padding: 8px 22px; font-size: 13px; color: var(--amz-muted);
+    }
+    .results-bar strong { color: var(--amz-text); }
+    .results-bar .stars-inline { color: var(--amz-star); }
+
+    /* ═══ MAIN LAYOUT ═══ */
+    .amz-main { max-width: 1280px; margin: 0 auto; padding: 14px 14px; display: flex; gap: 14px; }
+
+    /* ═══ SIDEBAR ═══ */
+    .sidebar { width: 220px; flex-shrink: 0; }
+    .sb-card {
+      background: white; border: 1px solid var(--amz-border); border-radius: 8px;
+      padding: 14px 16px; margin-bottom: 12px;
+    }
+    .sb-card h4 {
+      font-size: 15px; font-weight: bold; margin-bottom: 10px;
+      padding-bottom: 6px; border-bottom: 1px solid var(--amz-border);
+    }
+    .sb-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12.5px; padding: 4px 0; cursor: pointer; color: var(--amz-link);
+    }
+    .sb-item:hover { color: var(--amz-lhov); text-decoration: underline; }
+    .sb-item input[type="checkbox"] { accent-color: var(--amz-orange); cursor: pointer; }
+    .sb-star { font-size: 12.5px; cursor: pointer; color: var(--amz-star); padding: 3px 0; }
+    .sb-star:hover { text-decoration: underline; }
+    .sb-star.dim { opacity: .35; }
+
+    /* ═══ CONTENT ═══ */
+    .content { flex: 1; min-width: 0; }
+
+    /* Section card */
+    .sec-card {
+      background: white; border: 1px solid var(--amz-border); border-radius: 8px;
+      padding: 18px 20px; margin-bottom: 14px;
+      animation: fadeUp .4s ease both;
+    }
+    .sec-card:nth-child(2) { animation-delay: .08s; }
+    .sec-card:nth-child(3) { animation-delay: .14s; }
+    .sec-card:nth-child(4) { animation-delay: .20s; }
+    .sec-card:nth-child(5) { animation-delay: .26s; }
+    .sec-card:nth-child(6) { animation-delay: .32s; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+
+    .sec-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--amz-border); }
+    .sec-header h2 { font-size: 21px; font-weight: bold; }
+    .see-all { color: var(--amz-link); font-size: 13px; }
+    .see-all:hover { color: var(--amz-lhov); text-decoration: underline; }
+
+    /* ═══ SORT BAR ═══ */
+    .sort-bar { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--amz-muted); margin-bottom: 12px; flex-wrap: wrap; }
+    .sort-btn {
+      background: white; border: 1px solid var(--amz-border); border-radius: 4px;
+      padding: 4px 11px; font-size: 12px; cursor: pointer; color: var(--amz-text);
+      transition: border-color .15s, background .15s;
+    }
+    .sort-btn:hover, .sort-btn.active { border-color: var(--amz-orange); background: #fff8ef; color: var(--amz-lhov); }
+
+    /* ═══ PROJECT / PRODUCT CARDS ═══ */
+    .prod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 14px; }
+    .prod-card {
+      border: 1px solid var(--amz-border); border-radius: 8px; overflow: hidden;
+      background: white; display: flex; flex-direction: column;
+      transition: box-shadow .2s, transform .2s;
+      cursor: pointer;
+    }
+    .prod-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.14); transform: translateY(-2px); }
+    .prod-img {
+      background: linear-gradient(135deg, #1a2537, #232f3e);
+      height: 155px; display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .prod-img-green { background: linear-gradient(135deg, #1a3324, #0f2218); }
+    .prod-icon { font-size: 58px; transition: transform .3s; }
+    .prod-card:hover .prod-icon { transform: scale(1.1); }
+    .prod-badge {
+      position: absolute; top: 9px; left: 9px;
+      background: var(--amz-orange); color: white;
+      font-size: 10.5px; font-weight: bold; padding: 3px 9px; border-radius: 3px;
+    }
+    .prod-badge.new-b { background: #067D62; }
+    .prod-body { padding: 12px; flex: 1; display: flex; flex-direction: column; }
+    .prod-title { font-size: 14px; font-weight: bold; color: var(--amz-link); margin-bottom: 4px; line-height: 1.3; }
+    .prod-title:hover { color: var(--amz-lhov); }
+    .prod-stars { color: var(--amz-star); font-size: 14px; }
+    .prod-revs { font-size: 11.5px; color: var(--amz-link); margin-bottom: 8px; }
+    .prod-desc { font-size: 12px; color: var(--amz-muted); line-height: 1.55; flex: 1; margin-bottom: 10px; }
+    .prod-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
+    .tag { background: #f0f2f2; color: var(--amz-muted); font-size: 10.5px; padding: 2px 8px; border-radius: 12px; border: 1px solid var(--amz-border); }
+    .prod-price { font-size: 18px; font-weight: bold; color: var(--amz-red); margin-bottom: 3px; }
+    .prod-prime { font-size: 12px; color: var(--amz-prime); font-weight: bold; margin-bottom: 3px; }
+    .prod-stock { font-size: 12px; color: var(--amz-green); font-weight: bold; margin-bottom: 10px; }
+    .prod-btn-y {
+      display: block; width: 100%; text-align: center;
+      background: var(--amz-yellow); border: 1px solid #a88734;
+      padding: 8px; border-radius: 20px; font-size: 13px; font-weight: bold;
+      color: var(--amz-text); cursor: pointer; text-decoration: none; margin-bottom: 6px;
+      transition: background .15s;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.5);
+    }
+    .prod-btn-y:hover { background: var(--amz-yhov); }
+    .prod-btn-ghost {
+      display: block; width: 100%; text-align: center;
+      background: none; border: 1px solid #a88734;
+      padding: 7px; border-radius: 20px; font-size: 13px;
+      color: var(--amz-text); cursor: pointer; text-decoration: none;
+      transition: background .15s;
+    }
+    .prod-btn-ghost:hover { background: #fef9e7; }
+
+    /* ═══ TIMELINE ═══ */
+    .timeline { padding-left: 26px; position: relative; }
+    .timeline::before { content: ''; position: absolute; left: 7px; top: 4px; bottom: 4px; width: 2px; background: linear-gradient(to bottom, var(--amz-orange), var(--amz-border)); border-radius: 2px; }
+    .tl-item { position: relative; margin-bottom: 22px; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot { position: absolute; left: -23px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--amz-orange); border: 2px solid white; box-shadow: 0 0 0 2px var(--amz-orange); }
+    .tl-row { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 3px; }
+    .tl-title { font-size: 14px; font-weight: bold; }
+    .tl-date { font-size: 11px; color: var(--amz-muted); background: #f0f2f2; border: 1px solid var(--amz-border); padding: 1px 7px; border-radius: 3px; }
+    .tl-org { font-size: 12.5px; color: var(--amz-link); margin-bottom: 5px; }
+    .tl-desc { font-size: 12.5px; color: var(--amz-muted); line-height: 1.6; }
+
+    /* ═══ SKILLS CHIPS ═══ */
+    .skills-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-chip {
+      display: flex; align-items: center; gap: 10px;
+      background: white; border: 1px solid var(--amz-border); border-radius: 6px;
+      padding: 10px 14px; font-size: 13px; font-weight: bold; cursor: default;
+      transition: border-color .15s, box-shadow .15s, transform .15s; min-width: 160px;
+    }
+    .skill-chip:hover { border-color: var(--amz-orange); box-shadow: 0 2px 8px rgba(255,153,0,.2); transform: translateY(-1px); }
+    .sk-icon { font-size: 22px; }
+    .sk-name { font-size: 13px; font-weight: bold; }
+    .sk-level { font-size: 10.5px; color: var(--amz-muted); font-weight: normal; margin-top: 1px; }
+    .sk-bar { height: 4px; background: #e6e6e6; border-radius: 2px; overflow: hidden; margin-top: 4px; width: 90px; }
+    .sk-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--amz-orange), var(--amz-yellow)); animation: growb 1s ease both; animation-delay: .4s; }
+    @keyframes growb { from { width: 0 !important; } }
+
+    /* ═══ ABOUT / PROFILE ═══ */
+    .profile-wrap { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+    .p-avatar { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, var(--amz-orange), var(--amz-yellow)); display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: bold; color: white; flex-shrink: 0; box-shadow: 0 4px 16px rgba(255,153,0,.3); }
+    .p-info { flex: 1; min-width: 200px; }
+    .p-info h3 { font-size: 20px; font-weight: bold; margin-bottom: 3px; }
+    .p-role { color: var(--amz-muted); font-size: 13.5px; margin-bottom: 12px; }
+    .p-stats { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 12px; }
+    .pstat { text-align: center; }
+    .pstat-num { font-size: 22px; font-weight: bold; color: var(--amz-orange); }
+    .pstat-lbl { font-size: 10px; color: var(--amz-muted); text-transform: uppercase; letter-spacing: .3px; }
+    .p-bio { font-size: 13px; color: var(--amz-muted); line-height: 1.65; }
+
+    /* Rating bars */
+    .rating-col { min-width: 200px; }
+    .rating-title { font-size: 13.5px; font-weight: bold; margin-bottom: 10px; }
+    .rating-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .rating-big { font-size: 50px; font-weight: bold; line-height: 1; }
+    .rbar-row { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-bottom: 4px; }
+    .rbar-lbl { color: var(--amz-link); width: 30px; font-size: 11.5px; }
+    .rbar-track { flex: 1; background: #e3e6e6; height: 12px; border-radius: 2px; overflow: hidden; }
+    .rbar-fill { background: linear-gradient(90deg, var(--amz-orange), var(--amz-yellow)); height: 100%; border-radius: 2px; }
+    .rbar-cnt { color: var(--amz-muted); width: 22px; text-align: right; font-size: 11.5px; }
+
+    /* ═══ CONTACT ═══ */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 12px; }
+    .contact-item {
+      display: flex; align-items: center; gap: 14px;
+      border: 1px solid var(--amz-border); border-radius: 8px; padding: 14px;
+      text-decoration: none; color: var(--amz-text); background: white;
+      transition: border-color .15s, box-shadow .15s, transform .15s;
+    }
+    .contact-item:hover { border-color: var(--amz-orange); box-shadow: 0 3px 12px rgba(255,153,0,.18); transform: translateY(-2px); }
+    .ci-icon { font-size: 26px; }
+    .ci-lbl { font-size: 10.5px; color: var(--amz-muted); text-transform: uppercase; letter-spacing: .3px; }
+    .ci-val { font-size: 13px; font-weight: bold; color: var(--amz-link); margin-top: 2px; }
+
+    /* ═══ FOOTER ═══ */
+    .foot-top { background: var(--amz-accent); color: white; padding: 18px; text-align: center; margin-top: 20px; }
+    .foot-top a { color: #ddd; font-size: 13px; }
+    .foot-top a:hover { text-decoration: underline; color: white; }
+    .foot-main { background: var(--amz-mid); color: #ccc; padding: 28px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 22px; }
+    .foot-col h4 { color: white; font-size: 14px; font-weight: bold; margin-bottom: 12px; }
+    .foot-col a { display: block; color: #ccc; font-size: 12.5px; margin-bottom: 7px; }
+    .foot-col a:hover { color: white; text-decoration: underline; }
+    .foot-bottom { background: var(--amz-dark); color: #ccc; text-align: center; padding: 14px; font-size: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .foot-logo { color: white; font-size: 17px; font-weight: bold; }
+    .foot-logo span { color: var(--amz-orange); }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 900px) { .sidebar, .hero-card { display: none; } .hero h1 { font-size: 34px; } .hero-inner { padding: 44px 20px 40px; } }
+    @media (max-width: 600px) { .nav-loc { display: none; } .amz-main { padding: 8px; } }
+  </style>
+</head>
+<body>
+
+<!-- UTILITY BAR -->
+<div class="util-bar">
+  <span class="util-avail"><span class="adot"></span>Open to Opportunities</span>
+  <a href="#projects">Today's Projects</a>
+  <a href="#contact">Customer Service</a>
+  <a href="https://github.com/ashishbhandari642005-beep" target="_blank">GitHub</a>
+  <a href="https://linkedin.com/in/ashish-bhandari-788548305" target="_blank">LinkedIn</a>
+  <a href="#">Sell</a>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-name">Ashish<span>.in</span></div>
+    <div class="nav-logo-sub">.portfolio</div>
+  </a>
+
+  <div class="nav-loc">
+    <span class="l1">&#128205; Deliver to</span>
+    <span class="l2">Kharar, India</span>
+  </div>
+
+  <div class="nav-search">
+    <select class="nav-search-cat">
+      <option>All</option>
+      <option>Projects</option>
+      <option>Skills</option>
+      <option>DevOps</option>
+    </select>
+    <input class="nav-search-input" type="text" placeholder="Search projects, skills, experience&hellip;">
+    <button class="nav-search-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" stroke="#131921" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="nav-links">
+    <div class="nav-link">
+      <div class="nl1">Hello, Recruiter</div>
+      <div class="nl2">Account &amp; Lists &#9662;</div>
+    </div>
+    <div class="nav-link">
+      <div class="nl1">Returns</div>
+      <div class="nl2">&amp; Orders</div>
+    </div>
+    <div class="nav-link nav-cart">
+      <div>
+        <div class="nl1">&#128722;</div>
+        <span class="cart-num">2</span>
+      </div>
+      <div class="nl2">Cart</div>
+    </div>
+  </div>
+</nav>
+
+<!-- SUB-NAV -->
+<div class="sub-nav">
+  <div class="sub-nav-item bold">&#9776;&nbsp;All</div>
+  <div class="sub-nav-item" data-t="projects">Projects</div>
+  <div class="sub-nav-item" data-t="skills">Skills</div>
+  <div class="sub-nav-item" data-t="experience">Experience</div>
+  <div class="sub-nav-item" data-t="education">Education</div>
+  <div class="sub-nav-item" data-t="about">About</div>
+  <div class="sub-nav-item" data-t="contact">Contact</div>
+  <div class="sub-nav-item fire" id="hireBtn">&#128293;&nbsp;Hire Me &mdash; Open to Offers</div>
+</div>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero">
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow"><span class="eyebrow-dot"></span>&#9889; PRIME CANDIDATE &mdash; Cloud &amp; DevOps</div>
+        <h1>Ashish<br><span class="hl">Bhandari</span></h1>
+        <div class="hero-role">Cloud &amp; DevOps Engineer &#9729;&#65039;</div>
+        <div class="hero-tag">Building scalable, cloud-native systems with Node.js, Docker &amp; AWS. Passionate about microservices and modern deployment pipelines.</div>
+        <div class="hero-cta">
+          <a href="mailto:bhandariashish367@gmail.com" class="btn-yellow">&#128233;&nbsp;Hire Me</a>
+          <a href="https://github.com/Cloudbyashishbhandari" target="_blank" class="btn-orange">&#128104;&#8205;&#128187;&nbsp;View GitHub</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat"><div class="hstat-num">2+</div><div class="hstat-label">Projects</div></div>
+          <div class="hstat"><div class="hstat-num">8+</div><div class="hstat-label">Tech Skills</div></div>
+          <div class="hstat"><div class="hstat-num">5.0</div><div class="hstat-label">Avg Rating</div></div>
+          <div class="hstat"><div class="hstat-num">&#8734;</div><div class="hstat-label">Curiosity</div></div>
+        </div>
+      </div>
+
+      <!-- AMAZON-STYLE PRODUCT CARD -->
+      <div class="hero-card">
+        <div class="hc-avatar">AB</div>
+        <div class="hc-name">Ashish Bhandari</div>
+        <div class="hc-role">Cloud &amp; DevOps &bull; Kharar, India</div>
+        <div class="hc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="hc-reviews">20 recruiter endorsements</div>
+        <div class="hc-price">Free <span>to interview</span></div>
+        <div class="hc-avail">&#10003; In Stock &mdash; Available Now</div>
+        <button class="hc-btn-y" onclick="window.location='mailto:bhandariashish367@gmail.com'">Add to Team &#128722;</button>
+        <button class="hc-btn-o" onclick="window.open('https://linkedin.com/in/ashish-bhandari-788548305')">Connect on LinkedIn</button>
+        <div class="hc-note">&#128274;&nbsp;Secure hire &bull; Eligible for full-time &amp; internship</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DEAL STRIP -->
+<div class="deal-strip">
+  <span class="deal-lbl">TODAY'S DEAL</span>
+  <span>Aspiring <strong>Cloud &amp; DevOps Engineer</strong> &mdash; Freshly deployed, zero critical bugs.</span>
+  <a href="#contact">Claim Offer &rarr;</a>
+</div>
+
+<!-- RESULTS BAR -->
+<div class="results-bar">
+  <strong>2 projects</strong> &bull; <strong>8 skills</strong> &bull; <strong>1 education</strong> &bull; Candidate rating: <strong class="stars-inline">&#9733;&#9733;&#9733;&#9733;&#9733;</strong> <strong>5.0</strong> &bull; Sort by: <a href="#" style="color:var(--amz-link)">Featured</a>
+</div>
+
+<!-- MAIN -->
+<div class="amz-main">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-card">
+      <h4>Department</h4>
+      <label class="sb-item"><input type="checkbox" checked>&nbsp;Cloud &amp; DevOps</label>
+      <label class="sb-item"><input type="checkbox" checked>&nbsp;Backend Dev</label>
+      <label class="sb-item"><input type="checkbox">&nbsp;Frontend Dev</label>
+      <label class="sb-item"><input type="checkbox">&nbsp;Full Stack</label>
+    </div>
+    <div class="sb-card">
+      <h4>Avg. Customer Review</h4>
+      <div class="sb-star">&#9733;&#9733;&#9733;&#9733;&#9733; &amp; Up</div>
+      <div class="sb-star dim">&#9733;&#9733;&#9733;&#9733;&#9734; &amp; Up</div>
+      <div class="sb-star dim">&#9733;&#9733;&#9733;&#9734;&#9734; &amp; Up</div>
+    </div>
+    <div class="sb-card">
+      <h4>Tech Stack</h4>
+      <label class="sb-item"><input type="checkbox" checked>&nbsp;Node.js</label>
+      <label class="sb-item"><input type="checkbox" checked>&nbsp;Docker</label>
+      <label class="sb-item"><input type="checkbox" checked>&nbsp;AWS</label>
+      <label class="sb-item"><input type="checkbox" >&nbsp;MongoDB</label>
+      <label class="sb-item"><input type="checkbox" >&nbsp;React</label>
+      <label class="sb-item"><input type="checkbox" checked>&nbsp;GitHub Actions</label>
+      <label class="sb-item"><input type="checkbox" checked>&nbsp;Linux / Shell</label>
+    </div>
+    <div class="sb-card">
+      <h4>Availability</h4>
+      <label class="sb-item"><input type="checkbox" checked>&nbsp;Immediate</label>
+      <label class="sb-item"><input type="checkbox">&nbsp;1 Month Notice</label>
+      <label class="sb-item"><input type="checkbox">&nbsp;Remote Only</label>
+    </div>
+    <div class="sb-card">
+      <h4>Shipping</h4>
+      <label class="sb-item"><input type="checkbox" checked>&nbsp;Free &amp; Open Source</label>
+      <label class="sb-item"><input type="checkbox" checked>&nbsp;Prime Eligible</label>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- PROJECTS -->
+    <div class="sec-card" id="projects">
+      <div class="sec-header">
+        <h2>&#128722; Results for &ldquo;Top Projects&rdquo;</h2>
+        <a href="https://github.com/ashishbhandari642005-beep" target="_blank" class="see-all">See all on GitHub &rarr;</a>
+      </div>
+      <div class="sort-bar">
+        <span>Sort by:</span>
+        <button class="sort-btn active">Featured</button>
+        <button class="sort-btn">Newest</button>
+        <button class="sort-btn">Most Complex</button>
+        <button class="sort-btn">Avg. Rating</button>
+      </div>
+      <div class="prod-grid">
+
+        <!-- CampusOps -->
+        <div class="prod-card">
+          <div class="prod-img">
+            <div class="prod-icon">&#127979;</div>
+            <div class="prod-badge">FEATURED</div>
+          </div>
+          <div class="prod-body">
+            <div class="prod-title">CampusOps &mdash; Smart Campus System</div>
+            <div class="prod-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="prod-revs">12 endorsements</div>
+            <div class="prod-desc">Smart campus management using microservices architecture, Docker containers, and AWS deployment. Handles scheduling, attendance, and resource allocation at scale.</div>
+            <div class="prod-tags">
+              <span class="tag">Node.js</span>
+              <span class="tag">Docker</span>
+              <span class="tag">AWS</span>
+              <span class="tag">Microservices</span>
+            </div>
+            <div class="prod-price">Open Source</div>
+            <div class="prod-prime">&#9889; Deployed &amp; Live</div>
+            <div class="prod-stock">&#10003; In Stock</div>
+            <a href="https://github.com/Cloudbyashishbhandari/Devops-learning/tree/CampusOps-project" target="_blank" class="prod-btn-y">View Project</a>
+            <a href="https://github.com/Cloudbyashishbhandari/Devops-learning/tree/CampusOps-project" target="_blank" class="prod-btn-ghost">View Source Code</a>
+          </div>
+        </div>
+
+        <!-- GeoNews -->
+        <div class="prod-card">
+          <div class="prod-img prod-img-green">
+            <div class="prod-icon">&#127758;</div>
+            <div class="prod-badge new-b">NEW</div>
+          </div>
+          <div class="prod-body">
+            <div class="prod-title">GeoNews &mdash; Real-time News Aggregator</div>
+            <div class="prod-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="prod-revs">8 endorsements</div>
+            <div class="prod-desc">Real-time news aggregation platform using multiple APIs and MongoDB Atlas for persistent storage. Features location-based filtering and live updates.</div>
+            <div class="prod-tags">
+              <span class="tag">MongoDB Atlas</span>
+              <span class="tag">APIs</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">React</span>
+            </div>
+            <div class="prod-price">Open Source</div>
+            <div class="prod-prime">&#9889; Deployed &amp; Live</div>
+            <div class="prod-stock">&#10003; In Stock</div>
+            <a href="https://github.com/Cloudbyashishbhandari/Devops-learning/tree/Geonews-project" target="_blank" class="prod-btn-y">View Project</a>
+            <a href="https://github.com/Cloudbyashishbhandari/Devops-learning/tree/Geonews-project" target="_blank" class="prod-btn-ghost">View Source Code</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="sec-card" id="skills">
+      <div class="sec-header"><h2>&#9881;&#65039; Skills &amp; Technologies</h2></div>
+      <div class="skills-wrap">
+        <div class="skill-chip"><span class="sk-icon">&#129001;</span><div><div class="sk-name">Node.js</div><div class="sk-level">Backend Runtime</div><div class="sk-bar"><div class="sk-fill" style="width:85%"></div></div></div></div>
+        <div class="skill-chip"><span class="sk-icon">&#9883;&#65039;</span><div><div class="sk-name">React</div><div class="sk-level">Frontend Library</div><div class="sk-bar"><div class="sk-fill" style="width:72%"></div></div></div></div>
+        <div class="skill-chip"><span class="sk-icon">&#128051;</span><div><div class="sk-name">Docker</div><div class="sk-level">Containerization</div><div class="sk-bar"><div class="sk-fill" style="width:88%"></div></div></div></div>
+        <div class="skill-chip"><span class="sk-icon">&#9729;&#65039;</span><div><div class="sk-name">AWS</div><div class="sk-level">Cloud Platform</div><div class="sk-bar"><div class="sk-fill" style="width:78%"></div></div></div></div>
+        <div class="skill-chip"><span class="sk-icon">&#127807;</span><div><div class="sk-name">MongoDB</div><div class="sk-level">NoSQL Database</div><div class="sk-bar"><div class="sk-fill" style="width:80%"></div></div></div></div>
+        <div class="skill-chip"><span class="sk-icon">&#9881;&#65039;</span><div><div class="sk-name">GitHub Actions</div><div class="sk-level">CI/CD Pipeline</div><div class="sk-bar"><div class="sk-fill" style="width:75%"></div></div></div></div>
+        <div class="skill-chip"><span class="sk-icon">&#128279;</span><div><div class="sk-name">Microservices</div><div class="sk-level">Architecture</div><div class="sk-bar"><div class="sk-fill" style="width:82%"></div></div></div></div>
+        <div class="skill-chip"><span class="sk-icon">&#128039;</span><div><div class="sk-name">Linux</div><div class="sk-level">OS / Shell</div><div class="sk-bar"><div class="sk-fill" style="width:86%"></div></div></div></div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+<div class="sec-card" id="experience">
+  <div class="sec-header"><h2>&#128188; Work Experience</h2></div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-row">
+        <div class="tl-title">DevOps intern</div>
+        <div class="tl-date">2026</div>
+      </div>
+      <div class="tl-org">Pal InfoCom</div>
+      <div class="tl-desc">
+        Gained hands-on experience in cloud and DevOps practices, including working with AWS services (EC2, S3, CloudWatch), Linux commands, and shell scripting. Learned deployment basics, monitoring, and automation using CLI tools.
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="sec-card" id="education">
+      <div class="sec-header"><h2>&#127891; Education</h2></div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-row"><div class="tl-title">BCA &mdash; Computer application</div><div class="tl-date">2023 &ndash; 2026</div></div>
+          <div class="tl-org">Punjab / Chandigarh Region, India</div>
+          <div class="tl-desc">Focused on cloud computing, distributed systems, and Hosting Applications. Active in open-source contributions and DevOps community projects. Built CampusOps and GeoNews as part of academic and personal exploration.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT / PROFILE -->
+    <div class="sec-card" id="about">
+      <div class="sec-header"><h2>&#128100; Candidate Profile</h2></div>
+      <div class="profile-wrap">
+        <div class="p-avatar">AB</div>
+        <div class="p-info">
+          <h3>Ashish Bhandari</h3>
+          <div class="p-role">Aspiring Cloud &amp; DevOps Engineer &bull; Kharar, Punjab, India</div>
+          <div class="p-stats">
+            <div class="pstat"><div class="pstat-num">2+</div><div class="pstat-lbl">Projects</div></div>
+            <div class="pstat"><div class="pstat-num">8+</div><div class="pstat-lbl">Skills</div></div>
+            <div class="pstat"><div class="pstat-num">5.0</div><div class="pstat-lbl">Rating</div></div>
+            <div class="pstat"><div class="pstat-num">&#8734;</div><div class="pstat-lbl">Curiosity</div></div>
+          </div>
+          <div class="p-bio">Driven engineering student passionate about building scalable, cloud-native systems. Experienced with containerized microservices, CI/CD pipelines, and modern web development. Always learning, always shipping.</div>
+        </div>
+        <div class="rating-col">
+          <div class="rating-title">Recruiter Rating</div>
+          <div class="rating-row">
+            <div class="rating-big">5.0</div>
+            <div>
+              <div style="color:var(--amz-star);font-size:20px">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div style="font-size:11px;color:var(--amz-muted)">out of 5</div>
+            </div>
+          </div>
+          <div class="rbar-row"><span class="rbar-lbl">5 &#9733;</span><div class="rbar-track"><div class="rbar-fill" style="width:90%"></div></div><span class="rbar-cnt">18</span></div>
+          <div class="rbar-row"><span class="rbar-lbl">4 &#9733;</span><div class="rbar-track"><div class="rbar-fill" style="width:10%"></div></div><span class="rbar-cnt">2</span></div>
+          <div class="rbar-row"><span class="rbar-lbl">3 &#9733;</span><div class="rbar-track"><div class="rbar-fill" style="width:0%"></div></div><span class="rbar-cnt">0</span></div>
+          <div class="rbar-row"><span class="rbar-lbl">2 &#9733;</span><div class="rbar-track"><div class="rbar-fill" style="width:0%"></div></div><span class="rbar-cnt">0</span></div>
+          <div class="rbar-row"><span class="rbar-lbl">1 &#9733;</span><div class="rbar-track"><div class="rbar-fill" style="width:0%"></div></div><span class="rbar-cnt">0</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="sec-card" id="contact">
+      <div class="sec-header"><h2>&#128236; Contact &amp; Connect</h2></div>
+      <div class="contact-grid">
+        <a href="mailto:bhandariashish367@gmail.com" class="contact-item">
+          <div class="ci-icon">&#128231;</div>
+          <div><div class="ci-lbl">Email</div><div class="ci-val">bhandariashish367@gmail.com</div></div>
+        </a>
+        <a href="https://github.com/Cloudbyashishbhandari" target="_blank" class="contact-item">
+          <div class="ci-icon">&#128025;</div>
+          <div><div class="ci-lbl">GitHub</div><div class="ci-val">Cloudbyashishbhandari</div></div>
+        </a>
+        <a href="https://linkedin.com/in/ashish-bhandari-788548305" target="_blank" class="contact-item">
+          <div class="ci-icon">&#128188;</div>
+          <div><div class="ci-lbl">LinkedIn</div><div class="ci-val">ashish-bhandari-788548305</div></div>
+        </a>
+        <div class="contact-item" style="cursor:default">
+          <div class="ci-icon">&#128205;</div>
+          <div><div class="ci-lbl">Location</div><div class="ci-val">Kharar, Punjab, India</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<!-- FOOTER -->
+<div class="foot-top"><a href="#">&#8679; Back to top</a></div>
+<div class="foot-main">
+  <div class="foot-col">
+    <h4>Get to Know Me</h4>
+    <a href="#about">About Ashish</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#">Open Source</a>
+  </div>
+  <div class="foot-col">
+    <h4>Connect With Me</h4>
+    <a href="mailto:bhandariashish367@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/ashish-bhandari-788548305" target="_blank">LinkedIn</a>
+    <a href="https://github.com/Cloudbyashishbhandari" target="_blank">GitHub</a>
+  </div>
+  <div class="foot-col">
+    <h4>Projects</h4>
+    <a href="https://github.com/Cloudbyashishbhandari" target="_blank">CampusOps</a>
+    <a href="https://github.com/Cloudbyashishbhandari" target="_blank">GeoNews</a>
+    <a href="https://github.com/Cloudbyashishbhandari" target="_blank">More on GitHub</a>
+  </div>
+  <div class="foot-col">
+    <h4>Skills</h4>
+    <a href="#skills">Cloud (AWS)</a>
+    <a href="#skills">DevOps (Docker)</a>
+    <a href="#skills">Backend (Node.js)</a>
+    <a href="#skills">Databases (MongoDB)</a>
+  </div>
+</div>
+<div class="foot-bottom">
+  <span class="foot-logo">ashish<span>.in</span></span>
+  <span>&middot;</span>
+  <span>&copy; 2026 Ashish Bhandari. All rights reserved.</span>
+  <span>&middot;</span>
+  <span style="cursor:pointer">Conditions of Use</span>
+  <span>&middot;</span>
+  <span style="cursor:pointer">Privacy Notice</span>
+</div>
+
+<script>
+  // Sort buttons
+  document.querySelectorAll('.sort-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Sub-nav smooth scroll
+  document.querySelectorAll('.sub-nav-item[data-t]').forEach(item => {
+    item.addEventListener('click', () => {
+      const el = document.getElementById(item.dataset.t);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Hire Me
+  document.getElementById('hireBtn')?.addEventListener('click', () => {
+    window.location = 'mailto:bhandariashish367@gmail.com';
+  });
+
+  // Back to top
+  document.querySelector('.foot-top a')?.addEventListener('click', e => {
+    e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Navbar search enter key
+  document.querySelector('.nav-search-input')?.addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    const q = e.target.value.toLowerCase();
+    const map = { project: 'projects', skill: 'skills', contact: 'contact', about: 'about', experience: 'experience', education: 'education' };
+    for (const [k, v] of Object.entries(map)) {
+      if (q.includes(k)) { document.getElementById(v)?.scrollIntoView({ behavior: 'smooth' }); break; }
+    }
+  });
+</script>
+</body>
+</html>
